@@ -1,4 +1,6 @@
 import { ApolloClient, InMemoryCache, makeVar } from "@apollo/client";
+import routes from "./routes";
+import { NavigateFunction } from "react-router-dom";
 
 const TOKEN = "TOKEN";
 const DARK_MODE = "DARK_MODE";
@@ -16,8 +18,23 @@ export const disableDarkMode = () => {
   darkModeVar(false);
 };
 
+export const logInUser = (token: string) => {
+  localStorage.setItem(TOKEN, token);
+  isLoggedInVar(true);
+};
+
+export const logOutUser = (navigate: NavigateFunction) => {
+  localStorage.removeItem(TOKEN);
+  isLoggedInVar(false);
+  window.location.reload();
+  navigate(routes.home, { replace: true });
+};
+
 // --- apollo client --- //
 export const client = new ApolloClient({
-  uri: "http://localhost:4000/graphql",
+  uri:
+    process.env.NODE_ENV === "production"
+      ? "https://nomadcoffee-backend-ee6f.onrender.com/graphql"
+      : "http://localhost:4000/graphql",
   cache: new InMemoryCache(),
 });
