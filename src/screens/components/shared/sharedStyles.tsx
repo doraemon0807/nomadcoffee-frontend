@@ -14,3 +14,10 @@ export const FormInput = styled.input`
 export const FormError = styled.span`
   color: red;
 `;
+
+export const Category = styled.div`
+  padding: 6px;
+  border: 2px solid ${(props) => props.theme.borderColor};
+  border-radius: 20px;
+  margin-right: 4px;
+`;

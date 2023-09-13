@@ -1,6 +1,12 @@
-import { ApolloClient, InMemoryCache, makeVar } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  createHttpLink,
+  makeVar,
+} from "@apollo/client";
 import routes from "./routes";
 import { NavigateFunction } from "react-router-dom";
+import { setContext } from "@apollo/client/link/context";
 
 const TOKEN = "TOKEN";
 const DARK_MODE = "DARK_MODE";
@@ -30,11 +36,24 @@ export const logOutUser = (navigate: NavigateFunction) => {
   navigate(routes.home, { replace: true });
 };
 
-// --- apollo client --- //
-export const client = new ApolloClient({
+const httpLink = createHttpLink({
   uri:
     process.env.NODE_ENV === "production"
       ? "https://nomadcoffee-backend-ee6f.onrender.com/graphql"
       : "http://localhost:4000/graphql",
+});
+
+const authLink = setContext((_, { headers }) => {
+  return {
+    headers: {
+      ...headers,
+      token: localStorage.getItem(TOKEN),
+    },
+  };
+});
+
+// --- apollo client --- //
+export const client = new ApolloClient({
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });

@@ -5,13 +5,14 @@ const config: CodegenConfig = {
     process.env.NODE_ENV === "production"
       ? "https://nomadcoffee-backend-ee6f.onrender.com/graphql"
       : "http://localhost:4000/graphql",
-  documents: ["src/**/*.tsx"],
+  documents: ["src/**/*.{tsx,ts}"],
   generates: {
     "./src/__generated__/": {
       preset: "client",
       plugins: [],
       presetConfig: {
         gqlTagName: "gql",
+        fragmentMasking: false,
       },
     },
   },

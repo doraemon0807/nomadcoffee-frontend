@@ -55,7 +55,7 @@ export default function Login() {
     if (location?.state?.message) {
       setStateMessage(location.state.message);
     }
-  }, []);
+  }, [location?.state?.message]);
 
   const {
     handleSubmit,
