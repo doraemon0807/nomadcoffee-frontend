@@ -69,7 +69,7 @@ export default function ShopEdit() {
     if (location?.state?.userId !== meData?.me.profile?.id) {
       navigate("/");
     }
-  }, []);
+  }, [location?.state?.userId, meData?.me.profile?.id, navigate]);
 
   const {
     register,

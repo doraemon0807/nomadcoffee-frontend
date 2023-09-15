@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import PageTitle from "./components/shared/PageTitle";
 import { gql } from "../__generated__";

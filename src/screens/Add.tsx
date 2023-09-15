@@ -61,7 +61,7 @@ export default function Add() {
     formState: { errors },
   } = useForm<IAddForm>();
 
-  const [addShopMutation, { loading }] = useMutation(ADD_SHOP);
+  // const [addShopMutation, { loading }] = useMutation(ADD_SHOP);
 
   const onSubmitValid = () => {};
 
