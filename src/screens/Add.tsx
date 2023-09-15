@@ -3,7 +3,6 @@ import Button from "./components/shared/Button";
 import { AuthForm } from "./components/auth/AuthForm";
 import { FormError, FormInput } from "./components/shared/sharedStyles";
 import { useForm } from "react-hook-form";
-import { gql } from "../__generated__";
 
 const Container = styled.div`
   margin-top: 20px;
