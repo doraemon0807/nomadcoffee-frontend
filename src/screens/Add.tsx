@@ -3,7 +3,6 @@ import Button from "./components/shared/Button";
 import { AuthForm } from "./components/auth/AuthForm";
 import { FormError, FormInput } from "./components/shared/sharedStyles";
 import { useForm } from "react-hook-form";
-import { useMutation } from "@apollo/client";
 import { gql } from "../__generated__";
 
 const Container = styled.div`
@@ -44,15 +43,15 @@ interface IAddForm {
   addError?: string;
 }
 
-const ADD_SHOP = gql(`
-mutation createCoffeeShop($name: String!, $files: [Upload!]!){
-    createCoffeeShop(name: $name, files: $files) {
-      ok
-      error
-      id
-    }
-  }
-`);
+// const ADD_SHOP = gql(`
+// mutation createCoffeeShop($name: String!, $files: [Upload!]!){
+//     createCoffeeShop(name: $name, files: $files) {
+//       ok
+//       error
+//       id
+//     }
+//   }
+// `);
 
 export default function Add() {
   const {
